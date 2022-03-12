@@ -36,11 +36,12 @@ class GameApp {
       let arr = this.getRandom([...this.cards, ...this.cards]);
       let rand = (Math.random() <= 0.5) ? 0 : 1;
       let degRot = [180, 0]
-      arr.forEach(card => {
+
+      arr.forEach((card, cardInd) => {
         let elNode = this.htmlToElements(`
         <div class="scene scene--card">
           <div class="select-image card" data-num="${card.class}">
-            <div class="card__face card__face--front">x</div>
+            <div class="card__face card__face--front">${cardInd + 1}</div>
             <div class="card__face card__face--back" >
               <img src="/img/${card.class}.png" style="transform: rotate(${degRot[rand]}deg) scale(1.25)">
             </div>
