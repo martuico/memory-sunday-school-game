@@ -43,7 +43,7 @@ class GameApp {
           <div class="select-image card" data-num="${card.class}">
             <div class="card__face card__face--front">${cardInd + 1}</div>
             <div class="card__face card__face--back" >
-              <img src="/img/${card.class}.png" style="transform: rotate(${degRot[rand]}deg) scale(1.25)">
+              <img src="./img/${card.class}.png" style="transform: rotate(${degRot[rand]}deg) scale(1.25)">
             </div>
           </div>
         </div>
