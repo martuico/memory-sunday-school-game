@@ -1,6 +1,6 @@
 class GameApp {
 
-  constructor() {
+  constructor(isSecond = false) {
     this.cards = [
       {
         class: 'one',
@@ -16,13 +16,9 @@ class GameApp {
         class: 'three',
         image: 'three',
         completed: false
-      },
-      {
-        class: 'four',
-        image: 'four',
-        completed: false
       }
     ]
+    this.isSecond = isSecond
   }
 
   setup() {
@@ -35,15 +31,16 @@ class GameApp {
   {
       let arr = this.getRandom([...this.cards, ...this.cards]);
       let rand = (Math.random() <= 0.5) ? 0 : 1;
-      let degRot = [180, 0]
-
+      let degRot = [180, 0];
+      let self = this;
       arr.forEach((card, cardInd) => {
+        let path = self.isSecond ? `img/second/${card.class}.png` : `img/${card.class}.png`
         let elNode = this.htmlToElements(`
         <div class="scene scene--card">
           <div class="select-image card" data-num="${card.class}">
             <div class="card__face card__face--front">${cardInd + 1}</div>
             <div class="card__face card__face--back" >
-              <img src="img/${card.class}.png" style="transform: rotate(${degRot[rand]}deg) scale(1.25)">
+              <img src="${path}" style="transform: rotate(${degRot[rand]}deg) scale(1.25)">
             </div>
           </div>
         </div>
@@ -106,7 +103,7 @@ class GameApp {
         }
         match.push(this.dataset.num)
 
-        console.log(match)
+
         if(match[0] === match[1]) {
           //add class done
           Swal.fire(
@@ -149,5 +146,4 @@ class GameApp {
 
 }
 
-let game = new GameApp()
-game.setup()
+
